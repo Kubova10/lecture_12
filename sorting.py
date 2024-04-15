@@ -25,16 +25,23 @@ def read_data(file_name):
 
     return data
 
-def selection_sort(list_of_nums):
+def selection_sort(list_of_nums,direction):
     for ind in range(len(list_of_nums)):
         min_index = ind
+        max_index = ind
 
         for j in range(ind + 1, len(list_of_nums)):
-            # select the minimum element in every iteration
             if list_of_nums[j] < list_of_nums[min_index]:
                 min_index = j
-        # swapping the elements to sort the array
-        (list_of_nums[ind], list_of_nums[min_index]) = (list_of_nums[min_index], list_of_nums[ind])
+            else:
+                if list_of_nums[j] > list_of_nums[max_index]:
+                    max_index = j
+
+        if direction == "asc":
+            (list_of_nums[ind], list_of_nums[min_index]) = (list_of_nums[min_index], list_of_nums[ind])
+        else:
+            (list_of_nums[ind], list_of_nums[max_index]) = (list_of_nums[max_index], list_of_nums[ind])
+
     return list_of_nums
 
 def main():
@@ -42,7 +49,7 @@ def main():
     data = read_data(file_name)
     print(data)
     key = data['series_1']
-    sort = selection_sort(key)
+    sort = selection_sort(key,"as")
     print(sort)
 
 
