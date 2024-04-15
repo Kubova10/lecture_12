@@ -44,14 +44,37 @@ def selection_sort(list_of_nums,direction):
 
     return list_of_nums
 
+def bubble_sort(nums):
+    for i in range(len(nums)-1):
+        for j in range(0,len(nums)-i-1):
+            if nums[j] > nums[j+1]:
+                nums[j],nums[j+1] = nums[j+1],nums[j]
+    return nums
+
+def  insertion_sort(nums):
+    n = len(nums)
+    if n <= 1:
+        return
+    for i in range(1, n):
+        key = nums[i]
+        j = i - 1
+        while j >= 0 and key < nums[j]:
+            nums[j + 1] = nums[j]
+            j -= 1
+        nums[j + 1] = key
+    return nums
+
 def main():
     file_name = "numbers.csv"
     data = read_data(file_name)
-    print(data)
+    #print(data)
     key = data['series_1']
-    sort = selection_sort(key,"as")
-    print(sort)
-
+    ssort = selection_sort(key,"as")
+    #print(ssort)
+    bsort = bubble_sort(key)
+    #print(bsort)
+    isort = insertion_sort(key)
+    print(isort)
 
 if __name__ == '__main__':
     main()
